@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/qualcomm/lahaina
+DEVICE_PATH := device/oplus/RMX3461
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -52,7 +52,7 @@ BOARD_BOOTIMG_HEADER_VERSION := 3
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_KERNEL_IMAGE_NAME := Image
 TARGET_KERNEL_CONFIG := lahaina_defconfig
-TARGET_KERNEL_SOURCE := kernel/qualcomm/lahaina
+TARGET_KERNEL_SOURCE := kernel/oplus/RMX3461
 
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
