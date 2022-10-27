@@ -13,7 +13,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit from lahaina device
-$(call inherit-product, device/qualcomm/lahaina/device.mk)
+$(call inherit-product, device/oplus/RMX3461/device.mk)
 
 PRODUCT_DEVICE := RMX3461
 PRODUCT_NAME := twrp_RMX3461
