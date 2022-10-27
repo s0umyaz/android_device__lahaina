@@ -15,15 +15,15 @@ $(call inherit-product, vendor/omni/config/common.mk)
 # Inherit from lahaina device
 $(call inherit-product, device/qualcomm/lahaina/device.mk)
 
-PRODUCT_DEVICE := lahaina
-PRODUCT_NAME := omni_lahaina
+PRODUCT_DEVICE := RMX3461
+PRODUCT_NAME := twrp_RMX3461
 PRODUCT_BRAND := qti
-PRODUCT_MODEL := Lahaina for arm64
-PRODUCT_MANUFACTURER := qualcomm
+PRODUCT_MODEL := RMX3461 for arm64
+PRODUCT_MANUFACTURER := oplus
 
 PRODUCT_GMS_CLIENTID_BASE := android-qualcomm
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="lahaina-user 12 RKQ1.210503.001 1663267127627 release-keys"
+    PRIVATE_BUILD_DESC="RMX3461-user 12 RKQ1.210503.001 1663267127627 release-keys"
 
-BUILD_FINGERPRINT := qti/lahaina/lahaina:12/RKQ1.210503.001/1663267127627:user/release-keys
+BUILD_FINGERPRINT := qti/RMX3461/RMX3461:12/RKQ1.210503.001/1663267127627:user/release-keys
