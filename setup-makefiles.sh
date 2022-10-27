@@ -8,8 +8,8 @@
 
 set -e
 
-DEVICE=lahaina
-VENDOR=qualcomm
+DEVICE=RMX3461
+VENDOR=oplus
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
