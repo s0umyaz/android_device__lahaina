@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-LOCAL_PATH := device/qualcomm/lahaina
+LOCAL_PATH := device/oplus/RMX3461
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
