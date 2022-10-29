@@ -23,7 +23,7 @@ PRODUCT_PACKAGES += \
     bootctrl.lahaina \
     bootctrl.lahaina.recovery
 
-PRODUCT_PACKAGES +:= \
+PRODUCT_PACKAGES += \
     bootctrl.lahaina \
     libgptutils \
     libz \
