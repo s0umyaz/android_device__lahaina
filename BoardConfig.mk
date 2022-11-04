@@ -14,14 +14,9 @@ ALLOW_MISSING_DEPENDENCIES := true
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     system \
-    system \
-    system_ext \
     system_ext \
     product \
-    product \
     vendor \
-    vendor \
-    odm \
     odm
 BOARD_USES_RECOVERY_AS_BOOT := true
 
@@ -44,8 +39,11 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
 DEXPREOPT_GENERATE_APEX_IMAGE := true
 
 # Bootloader
+BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOOTLOADER_BOARD_NAME := lahaina
 TARGET_NO_BOOTLOADER := true
+TARGET_NO_RECOVERY := true
+TARGET_USES_UEFI := true
 
 # Kernel
 BOARD_BOOTIMG_HEADER_VERSION := 3
@@ -60,17 +58,21 @@ ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
 endif
 
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
+
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 201326592
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_PRODUCT := product
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
 BOARD_SUPER_PARTITION_GROUPS := qualcomm_dynamic_partitions
-BOARD_QUALCOMM_DYNAMIC_PARTITIONS_PARTITION_LIST := system system system_ext system_ext product product vendor vendor odm odm my_product my_product my_company my_company my_carrier my_carrier my_region my_region my_bigball my_bigball my_heytap my_heytap my_stock my_stock my_preload my_preload my_manifest my_manifest my_engineering my_engineering
+BOARD_QUALCOMM_DYNAMIC_PARTITIONS_PARTITION_LIST := system system_ext product vendor odm
 BOARD_QUALCOMM_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
 # Platform
@@ -92,6 +94,27 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_USE_FSCRYPT_POLICY := 2
+
+# Recovery
+TARGET_RECOVERY_DEVICE_MODULES += \
+    libdmabufheap \
+    libion \
+    libnetutils \
+    libxml2 \
+    vendor.display.config@1.0 \
+    vendor.display.config@2.0
+    
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libnetutils.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
@@ -100,3 +123,7 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
+TW_HAS_NO_RECOVERY_PARTITION := true
+TW_INCLUDE_FUSE_EXFAT := true
+TWRP_INCLUDE_LOGCAT := true
+RECOVERY_SDCARD_ON_DATA := true
