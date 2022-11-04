@@ -1,4 +1,4 @@
-# Android device tree for qti Lahaina for arm64 (lahaina)
+# Android device tree for Realme 6SE (RMX3461)
 
 ```
 #
