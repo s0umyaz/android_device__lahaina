@@ -14,14 +14,9 @@ ALLOW_MISSING_DEPENDENCIES := true
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     system \
-    system \
-    system_ext \
     system_ext \
     product \
-    product \
     vendor \
-    vendor \
-    odm \
     odm
 BOARD_USES_RECOVERY_AS_BOOT := true
 
@@ -62,6 +57,8 @@ TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
 endif
+
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
