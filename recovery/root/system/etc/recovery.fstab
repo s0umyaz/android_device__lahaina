@@ -1,19 +1,19 @@
 # Logical Partitions
-/system                  ext4      system                                          flags=display=system;logical;slotselect
-/system_ext              ext4      system_ext                                      flags=display=system_ext;logical;slotselect
-/product                 ext4      product                                         flags=display=product;logical;slotselect
-/vendor                  ext4      vendor                                          flags=display=vendor;logical;slotselect
-/odm                     ext4      odm                                             flags=display=odm;logical;slotselect
+system               /system            ext4                                               flags=display=system;logical;slotselect
+system_ext           /system_ext        ext4                                               flags=display=system_ext;logical;slotselect
+product              /product           ext4                                               flags=display=product;logical;slotselect
+vendor               /vendor            ext4                                               flags=display=vendor;logical;slotselect
+odm                  /odm               ext4                                               flags=display=odm;logical;slotselect
 
 # Data-related Partitions
-/metadata                ext4      /dev/block/by-name/metadata                     flags=display=metadata
-/data                    f2fs      /dev/block/bootdevice/by-name/userdata          flags=display=data
+/dev/block/by-name/metadata                      /metadata                ext4             flags=display=metadata
+/dev/block/bootdevice/by-name/userdata           /data                    f2fs             flags=display=data
 
 # External Device
 /external_sd             vfat      /dev/block/mmcblk1p1                            flags=display=external_sd
 /usb_otg                 vfat      /dev/block/sdg1                                 flags=display=usb_otg
 
 # Others
-/boot                    emmc      /dev/block/bootdevice/by-name/boot              flags=display=boot
-/recovery                emmc      /dev/block/bootdevice/by-name/recovery          flags=display=recovery
-/misc                    emmc      /dev/block/bootdevice/by-name/misc              flags=display=misc
+/dev/block/bootdevice/by-name/boot               /boot                    emmc              flags=display=boot
+/dev/block/bootdevice/by-name/recovery           /recovery                emmc              flags=display=recovery
+/dev/block/bootdevice/by-name/misc               /misc                    emmc              flags=display=misc
