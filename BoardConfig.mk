@@ -89,6 +89,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # Security patch level
 VENDOR_SECURITY_PATCH := 2021-08-01
+
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
 
@@ -112,12 +113,6 @@ TW_INCLUDE_CRYPTO := true
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_NINJA_USES_ENV_VARS += RTIC_MPGEN
-=======
-TW_INCLUDE_CRYPTO := true
-# TW_INCLUDE_CRYPTO_FBE := true
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
-# TW_USE_FSCRYPT_POLICY := 2
-
 
 # Recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
@@ -148,8 +143,6 @@ TW_LOAD_VENDOR_MODULES := "msm_drm.ko qcom_scm.ko androidboot.ko boot_mode.ko cl
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_NO_SCREEN_BLANK := true
-=======
-
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_OEM_BUILD := true
 TW_MAX_BRIGHTNESS := 255
