@@ -5,7 +5,7 @@ product              /product           ext4                                    
 vendor               /vendor            ext4                                               ro,barrier=1,discard                                                                            wait,slotselect,logical
 odm                  /odm               ext4                                               ro,barrier=1,discard                                                                            wait,slotselect,logical
 
-system               /system            erofs                         https://github.com/cd-Crypton/custom_recovery_tree_realme_RMX3461/tree/Android-12.1/recovery/root/system/etc                      ro                                                                            wait,slotselect,logical
+system               /system            erofs                                               ro                                                                            wait,slotselect,logical
 system_ext           /system_ext        erofs                                               ro                                                                            wait,slotselect,logical
 product              /product           erofs                                               ro                                                                            wait,slotselect,logical
 vendor               /vendor            erofs                                               ro                                                                            wait,slotselect,logical
