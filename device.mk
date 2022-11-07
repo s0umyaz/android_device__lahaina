@@ -48,4 +48,4 @@ PRODUCT_SOONG_NAMESPACES += \
     
 # Copy modules for depmod
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*.ko,device/realme/RMX3461/prebuilt/modules/5.4-gki/,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules/1.1/)
+    $(call find-copy-subdir-files,*.ko,device/realme/RMX3461/prebuilt/modules/5.4-gki/,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules/)
