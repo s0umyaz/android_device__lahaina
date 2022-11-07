@@ -18,7 +18,6 @@ AB_OTA_PARTITIONS += \
     product \
     vendor \
     odm
-BOARD_USES_RECOVERY_AS_BOOT := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -83,7 +82,8 @@ BOARD_QUALCOMM_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 TARGET_BOARD_PLATFORM := lahaina
 
 # Recovery
-# TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
@@ -135,6 +135,12 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 TARGET_VENDOR_PROP := $(DEVICE_PATH)/vendor.prop
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
+
+# Additional Recovery Modules
+TARGET_RECOVERY_DEVICE_MODULES += debuggerd
+RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd
+TARGET_RECOVERY_DEVICE_MODULES += strace
+RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/strace
 
 # Extra Vendor Modules
 TW_LOAD_VENDOR_MODULES := "msm_drm.ko qcom_scm.ko androidboot.ko boot_mode.ko clk-qcom.ko cmd-db.ko cqhci-crypto-qti.ko cqhci-crypto.ko crypto-qti-common.ko crypto-qti-hwkm.ko gcc-lahaina.ko msm-poweroff.ko oplus_charger_present.ko oplus_ftm_mode.ko phy-qcom-ufs-qmp-v4-lahaina.ko phy-qcom-ufs-qrbtc-sdm845.ko phy-qcom-ufs.ko pinctrl-lahaina.ko pinctrl-msm.ko ufshcd-crypto-qti.ko ufs-qcom.ko qcom_glink_native.ko"
