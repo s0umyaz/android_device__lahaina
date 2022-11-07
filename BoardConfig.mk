@@ -143,7 +143,7 @@ TARGET_RECOVERY_DEVICE_MODULES += strace
 RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/strace
 
 # Extra Vendor Modules
-TW_LOAD_VENDOR_MODULES := "msm_drm.ko qcom_scm.ko androidboot.ko boot_mode.ko clk-qcom.ko cmd-db.ko cqhci-crypto-qti.ko cqhci-crypto.ko crypto-qti-common.ko crypto-qti-hwkm.ko gcc-lahaina.ko msm-poweroff.ko oplus_charger_present.ko oplus_ftm_mode.ko phy-qcom-ufs-qmp-v4-lahaina.ko phy-qcom-ufs-qrbtc-sdm845.ko phy-qcom-ufs.ko pinctrl-lahaina.ko pinctrl-msm.ko ufshcd-crypto-qti.ko ufs-qcom.ko qcom_glink_native.ko"
+TW_LOAD_VENDOR_MODULES := "q6_pdr_dlkm.ko q6_notifier_dlkm.ko snd_event_dlkm.ko apr_dlkm.ko gpr_dlkm.ko spf_core_dlkm.ko adsp_loader_dlkm.ko msm_drm.ko qcom_scm.ko androidboot.ko boot_mode.ko clk-qcom.ko cmd-db.ko cqhci-crypto-qti.ko cqhci-crypto.ko crypto-qti-common.ko crypto-qti-hwkm.ko gcc-lahaina.ko msm-poweroff.ko oplus_charger_present.ko oplus_ftm_mode.ko phy-qcom-ufs-qmp-v4-lahaina.ko phy-qcom-ufs-qrbtc-sdm845.ko phy-qcom-ufs.ko pinctrl-lahaina.ko pinctrl-msm.ko ufshcd-crypto-qti.ko ufs-qcom.ko qcom_glink_native.ko"
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
