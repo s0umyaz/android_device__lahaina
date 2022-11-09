@@ -67,8 +67,8 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
     
 # OEM otacerts
-PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(LOCAL_PATH)/security/otacert
+#PRODUCT_EXTRA_RECOVERY_KEYS += \
+#    $(LOCAL_PATH)/security/otacert
 
 # Enable Fuse Passthrough
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
