@@ -20,9 +20,9 @@ TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-impl-1.1-qti.recovery \
-    android.hardware.boot@1.0-service 
+    android.hardware.boot@1.1-impl \
+    android.hardware.boot@1.1-impl-qti.recovery \
+    android.hardware.boot@1.1-service 
     
 
 PRODUCT_PACKAGES += \
@@ -49,6 +49,11 @@ PRODUCT_PACKAGES += \
     
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service
     
 # qcom decryption
 PRODUCT_PACKAGES += \
@@ -57,7 +62,7 @@ PRODUCT_PACKAGES += \
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+    vendor/qcom/opensource/commonsys-intf/display
 
 # Copy modules for depmod
 PRODUCT_COPY_FILES += \
