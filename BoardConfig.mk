@@ -13,11 +13,15 @@ ALLOW_MISSING_DEPENDENCIES := true
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    odm \
+    product \
     system \
     system_ext \
-    product \
+    vbmeta \
+    vbmeta_system \
     vendor \
-    odm
     
 # Architecture
 TARGET_ARCH := arm64
@@ -167,7 +171,7 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 
 # TW vendor modules
-TW_LOAD_VENDOR_MODULES := 
+# TW_LOAD_VENDOR_MODULES := 
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
