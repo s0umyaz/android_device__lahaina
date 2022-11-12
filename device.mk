@@ -67,4 +67,4 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Copy modules for depmod
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*.ko,device/qualcomm/lahaina/prebuilt/modules/5.4-gki/,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules/)
+    $(call find-copy-subdir-files,*.ko,device/qualcomm/lahaina/system/root/vendor/lib/modules/5.4-gki/,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules/)
