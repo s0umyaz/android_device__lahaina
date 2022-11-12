@@ -1,0 +1,25 @@
+# Logical Partitions
+system               /system            ext4                                               ro,barrier=1,discard                                                                            wait,slotselect,logical
+system_ext           /system_ext        ext4                                               ro,barrier=1,discard                                                                            wait,slotselect,logical
+product              /product           ext4                                               ro,barrier=1,discard                                                                            wait,slotselect,logical
+vendor               /vendor            ext4                                               ro,barrier=1,discard                                                                            wait,slotselect,logical
+odm                  /odm               ext4                                               ro,barrier=1,discard                                                                            wait,slotselect,logical
+
+system               /system            erofs                                               ro                                                                            wait,slotselect,logical
+system_ext           /system_ext        erofs                                               ro                                                                            wait,slotselect,logical
+product              /product           erofs                                               ro                                                                            wait,slotselect,logical
+vendor               /vendor            erofs                                               ro                                                                            wait,slotselect,logical
+odm                  /odm               erofs                                               ro                                                                            wait,slotselect,logical
+
+# Data-related Partitions
+/dev/block/by-name/metadata                      /metadata                ext4             noatime,nosuid,nodev,discard                                                                    wait,check,formattable
+/dev/block/bootdevice/by-name/userdata           /data                    f2fs             noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier,inlinecrypt    wait,check,formattable,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,metadata_encryption=aes-256-xts:wrappedkey_v0,quota
+
+# External Device
+/external_sd             vfat      /dev/block/mmcblk1p1                                     flags=display=external_sd
+/usb_otg                 vfat      /dev/block/sdg1                                          flags=display=usb_otg
+
+# Others
+/dev/block/bootdevice/by-name/boot               /boot                    emmc              flags=display=boot
+/dev/block/bootdevice/by-name/recovery           /recovery                emmc              flags=display=recovery
+/dev/block/bootdevice/by-name/misc               /misc                    emmc              flags=display=misc
