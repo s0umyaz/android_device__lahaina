@@ -65,8 +65,8 @@ BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_BOOTIMG_HEADER_VERSION := 3
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_KERNEL_IMAGE_NAME := kernel
-TARGET_KERNEL_CONFIG := lahaina_defconfig
-TARGET_KERNEL_SOURCE := kernel/qualcomm/lahaina
+# TARGET_KERNEL_CONFIG := lahaina_defconfig
+# TARGET_KERNEL_SOURCE := kernel/qualcomm/lahaina
 
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
@@ -167,7 +167,8 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 
 # TW vendor modules
-# TW_LOAD_VENDOR_MODULES := 
+TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko msm_drm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko apr_dlkm.ko snd_event_dlkm.ko _qcom_scm.ko androidboot.ko boot_mode.ko buildvariant.ko cdt_integrity.ko clk-dummy.ko clk-qcom.ko clk-rpmh.ko cmd-db.ko cqhci-crypto-qti.ko cqhci-crypto.ko cqhci.ko secure_buffer.ko rpmh-regulator.ko qnoc-yupik.ko qcom_glink_smem.ko iommu-logger.ko crypto-qti-common.ko crypto-qti-hwkm.ko gcc-lahaina.ko gcc-shima.ko gcc-yupik.ko hwkm.ko icc-bcm-voter.ko icc-rpmh.ko memory_dump_v2.ko msm-poweroff.ko oplus_charger_present.ko oplus_ftm_mode.ko oplus_project.ko phy-qcom-ufs-qmp-v4-lahaina.ko phy-qcom-ufs-qmp-v4-yupik.ko phy-qcom-ufs-qrbtc-sdm845.ko sdhci-msm.ko
+phy-qcom-ufs.ko pinctrl-lahaina.ko pinctrl-msm.ko pinctrl-shima.ko pinctrl-yupik.ko proxy-consumer.ko qbt_handler.ko qcom-arm-smmu-mod.ko qcom_glink_native.ko qcom_rpmh.ko qmi_helpers.ko qnoc-lahaina.ko qnoc-qos.ko qnoc-shima.ko qpnp-power-on.ko refgen.ko rpmhpd.ko simcardnum.ko smem.ko stub-regulator.ko subsystem_restart.ko ufshcd-crypto-qti.ko ufs-qcom.ko 
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
