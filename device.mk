@@ -58,7 +58,6 @@ PRODUCT_PACKAGES += \
 # fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
     
 # Dynamic partitions
@@ -81,5 +80,5 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys-intf/display
 
 # Copy modules for depmod
-PRODUCT_COPY_FILES += \
+# PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*.ko,device/qualcomm/lahaina/recovery/root/vendor/lib/modules/5.4-gki/,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules/)
