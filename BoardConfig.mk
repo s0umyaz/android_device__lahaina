@@ -57,8 +57,38 @@ BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
 # Kernel
 BOARD_BOOTIMG_HEADER_VERSION := 3
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_OFFSET := 0x00008000
+BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_DTB_OFFSET := 0x01f00000
+BOARD_DTB_SIZE := 4276769
+
+BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8
+BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
+BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += androidboot.memcg=1
+BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
+BOARD_KERNEL_CMDLINE += video=vfb:640x400,bpp=32,memsize=3072000
+BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x237
+BOARD_KERNEL_CMDLINE += service_locator.enable=1
+BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a600000.dwc3
+BOARD_KERNEL_CMDLINE += swiotlb=0
+BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += cgroup.memory=nokmem,nosocket
+BOARD_KERNEL_CMDLINE += pcie_ports=compat
+BOARD_KERNEL_CMDLINE += iptable_raw.raw_before_defrag=1
+BOARD_KERNEL_CMDLINE += ip6table_raw.raw_before_defrag=1
+BOARD_KERNEL_CMDLINE += kpti=off
+BOARD_KERNEL_CMDLINE += printk.devkmsg=on
+BOARD_KERNEL_CMDLINE += buildvariant=user
+
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --cmdline "twrpfastboot=1"
 BOARD_KERNEL_IMAGE_NAME := kernel
+NEED_KERNEL_MODULE_RECOVERY := true
 # TARGET_KERNEL_CONFIG := lahaina_defconfig
 # TARGET_KERNEL_SOURCE := kernel/qualcomm/lahaina
 
@@ -78,6 +108,7 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 201326592
 
 # Partitions -type
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -125,6 +156,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # Recovery -extra_modules 
 TARGET_RECOVERY_DEVICE_MODULES += \
+    libdmabufheap \
     libion \
     libxml2 \
     vendor.display.config@1.0 \
@@ -132,6 +164,7 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libdisplayconfig.qti
     
 RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
@@ -149,7 +182,7 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
-BOARD_AVB_VBMETA_SYSTEM := system
+BOARD_AVB_VBMETA_SYSTEM := system system_ext product
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
@@ -161,8 +194,8 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 
 # TW vendor modules
-TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko msm_drm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko apr_dlkm.ko snd_event_dlkm.ko _qcom_scm.ko androidboot.ko boot_mode.ko buildvariant.ko cdt_integrity.ko clk-dummy.ko clk-qcom.ko clk-rpmh.ko cmd-db.ko cqhci-crypto-qti.ko cqhci-crypto.ko cqhci.ko secure_buffer.ko rpmh-regulator.ko qnoc-yupik.ko qcom_glink_smem.ko iommu-logger.ko crypto-qti-common.ko crypto-qti-hwkm.ko gcc-lahaina.ko gcc-shima.ko gcc-yupik.ko hwkm.ko icc-bcm-voter.ko icc-rpmh.ko memory_dump_v2.ko msm-poweroff.ko oplus_charger_present.ko oplus_ftm_mode.ko oplus_project.ko phy-qcom-ufs-qmp-v4-lahaina.ko phy-qcom-ufs-qmp-v4-yupik.ko phy-qcom-ufs-qrbtc-sdm845.ko sdhci-msm.ko
-phy-qcom-ufs.ko pinctrl-lahaina.ko pinctrl-msm.ko pinctrl-shima.ko pinctrl-yupik.ko proxy-consumer.ko qbt_handler.ko qcom-arm-smmu-mod.ko qcom_glink_native.ko qcom_rpmh.ko qmi_helpers.ko qnoc-lahaina.ko qnoc-qos.ko qnoc-shima.ko qpnp-power-on.ko refgen.ko rpmhpd.ko simcardnum.ko smem.ko stub-regulator.ko subsystem_restart.ko ufshcd-crypto-qti.ko ufs-qcom.ko 
+TW_LOAD_VENDOR_MODULES = "adsp_loader_dlkm.ko msm_drm.ko apr_dlkm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko snd_event_dlkm.ko"
+
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
@@ -188,9 +221,9 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_INCLUDE_NTFS_3G := true
 TW_USE_TOOLBOX := true
 TW_EXCLUDE_APEX := true
-TW_OVERRIDE_PROPS_ADDITIONAL_PARTITIONS := odm
-TW_OVERRIDE_SYSTEM_PROPS := \
-    "ro.build.date.utc;ro.bootimage.build.date.utc=ro.build.date.utc;ro.odm.build.date.utc=ro.build.date.utc;ro.product.build.date.utc=ro.build.date.utc;ro.system.build.date.utc=ro.build.date.utc;ro.system_ext.build.date.utc=ro.build.date.utc;ro.vendor.build.date.utc=ro.build.date.utc;ro.build.product;ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental;ro.product.odm.device;ro.vendor.product.device.oem;ro.vendor.product.device.oem;ro.product.device=ro.vendor.product.device.oem"
+# TW_OVERRIDE_PROPS_ADDITIONAL_PARTITIONS := odm
+# TW_OVERRIDE_SYSTEM_PROPS := \
+#    "ro.build.date.utc;ro.bootimage.build.date.utc=ro.build.date.utc;ro.odm.build.date.utc=ro.build.date.utc;ro.product.build.date.utc=ro.build.date.utc;ro.system.build.date.utc=ro.build.date.utc;ro.system_ext.build.date.utc=ro.build.date.utc;ro.vendor.build.date.utc=ro.build.date.utc;ro.build.product;ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental;ro.product.odm.device;ro.vendor.product.device.oem;ro.vendor.product.device.oem;ro.product.device=ro.vendor.product.device.oem"
 
 # TWRP Device version
 TW_DEVICE_VERSION := minori
